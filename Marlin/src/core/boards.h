@@ -496,6 +496,7 @@
 #define BOARD_BTT_KRAKEN_V1_0         6010  // BigTreeTech Kraken v1.0 (STM32H723ZG)
 #define BOARD_TEENSY41                6011  // Teensy 4.1
 #define BOARD_T41U5XBB                6012  // T41U5XBB Teensy 4.1 breakout board
+#define BOARD_SMARTPRINTCOREH7X       6013  // Boltz R&D SmartPrintCoreH7x(STM32H723ZG)
 
 //
 // Espressif ESP32 WiFi
