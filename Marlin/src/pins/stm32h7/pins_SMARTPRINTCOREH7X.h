@@ -129,11 +129,6 @@
 
 // NeoPixel Config
 #define NEOPIXEL_PIN PB9
-#define NEOPIXEL_COUNT 10
-#define NEOPIXEL_COLOR_ORDER GRB
-#define NEOPIXEL_RED 0.1
-#define NEOPIXEL_GREEN 0.6
-#define NEOPIXEL_BLUE 0.2
 
 // Led Effect
 #define NEOPIXEL_PANEL_IDLE true
