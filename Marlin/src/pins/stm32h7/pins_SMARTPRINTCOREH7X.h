@@ -30,7 +30,7 @@
 //#define X_MIN_PIN !PC0
 //#define X_MAX_POS 200
 //#define X_HOME_BUMP_MM 2
-#define X_CURRENT 800  // Adjust the current as needed
+//#define X_CURRENT 800  // Adjust the current as needed
 
 // Motor-2 (Y-axis)
 #define Y_STEP_PIN PG8
@@ -39,7 +39,7 @@
 //#define Y_MIN_PIN !PC1
 //#define Y_MAX_POS 200
 //#define Y_HOME_BUMP_MM 2
-#define Y_CURRENT 800  // Adjust the current as needed
+//#define Y_CURRENT 800  // Adjust the current as needed
 
 // Motor-3 (Z-axis)
 #define Z_STEP_PIN PG13
@@ -47,13 +47,37 @@
 #define Z_ENABLE_PIN PG10
 //#define Z_MAX_POS 200
 //#define Z_HOME_BUMP_MM 2
-#define Z_CURRENT 800  // Adjust the current as needed
+//#define Z_CURRENT 1600  // Adjust the current as needed
+
+// Motor-4 (Z-axis)
+#define Z2_STEP_PIN PD7
+#define Z2_DIR_PIN PD10
+#define Z2_ENABLE_PIN PD4
+//#define Z2_MAX_POS 200
+//#define Z2_HOME_BUMP_MM 2
+//#define Z2_CURRENT 1600  // Adjust the current as needed
+
+// Motor-5 (Z-axis)
+#define Z3_STEP_PIN PD11
+#define Z3_DIR_PIN PD12
+#define Z3_ENABLE_PIN PD8
+//#define Z3_MAX_POS 200
+//#define Z3_HOME_BUMP_MM 2
+//#define Z3_CURRENT 1600  // Adjust the current as needed
+
+// Motor-6 (Z-axis)
+#define Z4_STEP_PIN PB10
+#define Z4_DIR_PIN PB13
+#define Z4_ENABLE_PIN PB14
+//#define Z4_MAX_POS 200
+//#define Z4_HOME_BUMP_MM 2
+//#define Z4_CURRENT 1600  // Adjust the current as needed
 
 
 // End Stops
 #define X_STOP_PIN PC0
 #define Y_STOP_PIN PC1
-#define Z_STOP_PIN PC_2
+#define Z_STOP_PIN PC2
 
 // Extruder (E0)
 #define E0_STEP_PIN PF4
@@ -62,9 +86,9 @@
 //#define E0_CURRENT 800  // Adjust the current as needed
 
 // Extruder1 (E1)
-#define E1_STEP_PIN PD7
-#define E1_DIR_PIN PD10
-#define E1_ENABLE_PIN PD4
+//#define E1_STEP_PIN PD7
+//#define E1_DIR_PIN PD10
+//#define E1_ENABLE_PIN PD4
 //#define E1_CURRENT 800  // Adjust the current as needed
 
 // Extruder2 (E2)
@@ -74,25 +98,28 @@
 //#define E2_CURRENT 800  // Adjust the current as needed
 
 // Bed
-#define HEATER_BED_PIN PB2
-#define TEMP_BED_PIN PF11
+//#define HEATER_BED_PIN PB2
+#define HEATER_BED_PIN PB0 // Use FAN4 to control SSR
+#define TEMP_BED_PIN PF13
 
 // Chamber
-#define TEMP_CHAMBER_PIN PF14
+#define TEMP_CHAMBER_PIN PF11
 
 // Heaters
 #define HEATER_0_PIN PA10
-#define HEATER_1_PIN PE1
+//#define HEATER_1_PIN PE1
 //#define HEATER_2_PIN PB11
 #define TEMP_0_PIN PF12
-#define TEMP_1_PIN PF13
+//#define TEMP_1_PIN PF13
 //#define TEMP_2_PIN PF14
 
 // Fans
-#define FAN0_PIN PB0
+#define FAN0_PIN PB1
 #define FAN1_PIN PB3
-#define FAN2_PIN PB1
-#define FAN3_PIN PB4
+#define FAN2_PIN PB4
+#define FAN3_PIN PE1
+
+#define Z_MIN_PROBE_PIN PA4
 
 #define BOARD_PREINIT() { \
   OUT_WRITE_OD(HEATER_0_PIN, 0); \
@@ -114,11 +141,20 @@
   #define Z_SERIAL_TX_PIN                   PG11
   #define Z_SERIAL_RX_PIN        Z_SERIAL_TX_PIN
 
+  #define Z2_SERIAL_TX_PIN                   PD5
+  #define Z2_SERIAL_RX_PIN        Z2_SERIAL_TX_PIN
+
+  #define Z3_SERIAL_TX_PIN                   PD9
+  #define Z3_SERIAL_RX_PIN        Z3_SERIAL_TX_PIN
+
+  #define Z4_SERIAL_TX_PIN                   PB15
+  #define Z4_SERIAL_RX_PIN        Z4_SERIAL_TX_PIN
+
   #define E0_SERIAL_TX_PIN                  PF2
   #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
 
-  #define E1_SERIAL_TX_PIN                  PD5
-  #define E1_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
+  //#define E1_SERIAL_TX_PIN                  PD5
+  //#define E1_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
 
   // Reduce baud rate to improve software serial reliability
   #ifndef TMC_BAUD_RATE
@@ -128,15 +164,15 @@
 #endif // HAS_TMC_UART
 
 // NeoPixel Config
-#define NEOPIXEL_PIN PB9
+//#define NEOPIXEL_PIN PB9
 
 // Led Effect
-#define NEOPIXEL_PANEL_IDLE true
-#define NEOPIXEL_FRAME_RATE 24
+//#define NEOPIXEL_PANEL_IDLE true
+//#define NEOPIXEL_FRAME_RATE 24
 
 // Uncomment the following lines if you have additional servos
 //#define NUM_SERVOS 4
-#define SERVO0_PIN PA15       //BLTouch
+//#define SERVO0_PIN PA15       //BLTouch
 //#define SERVO1_PIN PB6
 //#define SERVO2_PIN PB7
 //#define SERVO3_PIN PB8
@@ -316,6 +352,38 @@
 
     #define BTN_EN1                LCD_P2_05_PIN
     #define BTN_EN2                LCD_P2_04_PIN
+
+  #elif ENABLED(FYSETC_MINI_12864_2_1)
+
+    /**
+     *          ------                           ------
+     *  BEEPER | 1  2 | BTN_ENC            MISO | 1  2 | SCK
+     *  LCD_EN | 3  4 | LCD_RS          BTN_EN2 | 3  4 | SD_CSEL
+     *  LCD_D4 | 5  6 | LCD_D5          BTN_EN1 | 5  6 | MOSI
+     *  LCD_D6 | 7  8 | LCD_D7           SD_DET | 7  8 | RESET
+     *     GND | 9 10 | 5V                  GND | 9 10 | KILL
+     *          ------                           ------
+     *           EXP1                             EXP2
+     */
+
+    #define BTN_ENC                LCD_P1_02_PIN
+    #define BEEPER_PIN             LCD_P1_03_PIN
+    #define LCD_PINS_EN            LCD_P1_04_PIN
+    #define LCD_PINS_RS            LCD_P1_05_PIN
+
+    #define BTN_EN1                LCD_P2_05_PIN
+    #define BTN_EN2                LCD_P2_04_PIN
+
+    #define LCD_PINS_DC            LCD_P1_05_PIN
+    #define DOGLCD_CS              LCD_P1_04_PIN
+    #define DOGLCD_A0              LCD_PINS_DC
+    #define LCD_BACKLIGHT_PIN      -1
+    #define LCD_RESET_PIN          LCD_P1_06_PIN
+    #define NEOPIXEL_PIN           LCD_P1_07_PIN
+    #define DOGLCD_MOSI            LCD_P2_08_PIN
+    #define DOGLCD_SCK             LCD_P2_07_PIN
+    #define FORCE_SOFT_SPI
+    //#define SOFTWARE_SPI
 
   #endif
 
