@@ -50,9 +50,9 @@
 //#define Z_CURRENT 1600  // Adjust the current as needed
 
 // Motor-4 (Z-axis)
-#define Z2_STEP_PIN PD7
-#define Z2_DIR_PIN PD10
-#define Z2_ENABLE_PIN PD4
+#define Z4_STEP_PIN PD7
+#define Z4_DIR_PIN PD10
+#define Z4_ENABLE_PIN PD4
 //#define Z2_MAX_POS 200
 //#define Z2_HOME_BUMP_MM 2
 //#define Z2_CURRENT 1600  // Adjust the current as needed
@@ -66,9 +66,9 @@
 //#define Z3_CURRENT 1600  // Adjust the current as needed
 
 // Motor-6 (Z-axis)
-#define Z4_STEP_PIN PB10
-#define Z4_DIR_PIN PB13
-#define Z4_ENABLE_PIN PB14
+#define Z2_STEP_PIN PB10
+#define Z2_DIR_PIN PB13
+#define Z2_ENABLE_PIN PB14
 //#define Z4_MAX_POS 200
 //#define Z4_HOME_BUMP_MM 2
 //#define Z4_CURRENT 1600  // Adjust the current as needed
@@ -141,14 +141,14 @@
   #define Z_SERIAL_TX_PIN                   PG11
   #define Z_SERIAL_RX_PIN        Z_SERIAL_TX_PIN
 
-  #define Z2_SERIAL_TX_PIN                   PD5
-  #define Z2_SERIAL_RX_PIN        Z2_SERIAL_TX_PIN
+  #define Z4_SERIAL_TX_PIN                   PD5
+  #define Z4_SERIAL_RX_PIN        Z2_SERIAL_TX_PIN
 
   #define Z3_SERIAL_TX_PIN                   PD9
   #define Z3_SERIAL_RX_PIN        Z3_SERIAL_TX_PIN
 
-  #define Z4_SERIAL_TX_PIN                   PB15
-  #define Z4_SERIAL_RX_PIN        Z4_SERIAL_TX_PIN
+  #define Z2_SERIAL_TX_PIN                   PB15
+  #define Z2_SERIAL_RX_PIN        Z4_SERIAL_TX_PIN
 
   #define E0_SERIAL_TX_PIN                  PF2
   #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
