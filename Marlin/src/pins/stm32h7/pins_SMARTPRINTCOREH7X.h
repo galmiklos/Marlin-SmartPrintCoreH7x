@@ -106,7 +106,8 @@
 #define TEMP_CHAMBER_PIN PF11
 
 // Heaters
-#define HEATER_0_PIN PA10
+//#define HEATER_0_PIN PA10
+#define HEATER_0_PIN PB11
 //#define HEATER_1_PIN PE1
 //#define HEATER_2_PIN PB11
 #define TEMP_0_PIN PF12
@@ -122,6 +123,7 @@
 #define Z_MIN_PROBE_PIN PA4
 
 #define BOARD_PREINIT() { \
+  OUT_WRITE_OD(PA10, 0); \
   OUT_WRITE_OD(HEATER_0_PIN, 0); \
   OUT_WRITE_OD(HEATER_BED_PIN, 0); \
   OUT_WRITE_OD(FAN0_PIN, 0); \
@@ -142,13 +144,13 @@
   #define Z_SERIAL_RX_PIN        Z_SERIAL_TX_PIN
 
   #define Z4_SERIAL_TX_PIN                   PD5
-  #define Z4_SERIAL_RX_PIN        Z2_SERIAL_TX_PIN
+  #define Z4_SERIAL_RX_PIN        Z4_SERIAL_TX_PIN
 
   #define Z3_SERIAL_TX_PIN                   PD9
   #define Z3_SERIAL_RX_PIN        Z3_SERIAL_TX_PIN
 
   #define Z2_SERIAL_TX_PIN                   PB15
-  #define Z2_SERIAL_RX_PIN        Z4_SERIAL_TX_PIN
+  #define Z2_SERIAL_RX_PIN        Z2_SERIAL_TX_PIN
 
   #define E0_SERIAL_TX_PIN                  PF2
   #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN

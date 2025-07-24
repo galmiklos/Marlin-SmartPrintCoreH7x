@@ -1036,7 +1036,7 @@
    * If not defined, probe limits will be used.
    * Override with 'M422 S<index> X<pos> Y<pos>'.
    */
-  #define Z_STEPPER_ALIGN_XY { {  50, 25 }, { 250,  25 }, { 250, 270 } , { 50, 270 } }
+  #define Z_STEPPER_ALIGN_XY { {  50, 25 }, { 230,  25 }, { 230, 215 } , { 50, 215 } }
 
   /**
    * Orientation for the automatically-calculated probe positions.
@@ -4144,7 +4144,7 @@
  * Host Prompt Support enables Marlin to use the host for user prompts so
  * filament runout and other processes can be managed from the host side.
  */
-//#define HOST_ACTION_COMMANDS
+#define HOST_ACTION_COMMANDS
 #if ENABLED(HOST_ACTION_COMMANDS)
   //#define HOST_PAUSE_M76                // Tell the host to pause in response to M76
   //#define HOST_PROMPT_SUPPORT           // Initiate host prompts to get user feedback
