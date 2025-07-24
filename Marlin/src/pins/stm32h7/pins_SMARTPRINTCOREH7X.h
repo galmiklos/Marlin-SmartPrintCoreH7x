@@ -50,9 +50,9 @@
 //#define Z_CURRENT 1600  // Adjust the current as needed
 
 // Motor-4 (Z-axis)
-#define Z4_STEP_PIN PD7
-#define Z4_DIR_PIN PD10
-#define Z4_ENABLE_PIN PD4
+#define Z2_STEP_PIN PD7
+#define Z2_DIR_PIN PD10
+#define Z2_ENABLE_PIN PD4
 //#define Z2_MAX_POS 200
 //#define Z2_HOME_BUMP_MM 2
 //#define Z2_CURRENT 1600  // Adjust the current as needed
@@ -66,9 +66,9 @@
 //#define Z3_CURRENT 1600  // Adjust the current as needed
 
 // Motor-6 (Z-axis)
-#define Z2_STEP_PIN PB10
-#define Z2_DIR_PIN PB13
-#define Z2_ENABLE_PIN PB14
+#define Z4_STEP_PIN PB10
+#define Z4_DIR_PIN PB13
+#define Z4_ENABLE_PIN PB14
 //#define Z4_MAX_POS 200
 //#define Z4_HOME_BUMP_MM 2
 //#define Z4_CURRENT 1600  // Adjust the current as needed
@@ -79,10 +79,17 @@
 #define Y_STOP_PIN PC1
 #define Z_STOP_PIN PC2
 
+// Fans
+#define FAN0_PIN PB1
+//#define FAN1_PIN PB3
+#define FAN2_PIN PB4
+#define FAN3_PIN PE1
+
 // Extruder (E0)
 #define E0_STEP_PIN PF4
 #define E0_DIR_PIN PF15
 #define E0_ENABLE_PIN PG15
+#define E0_AUTO_FAN_PIN PB3
 //#define E0_CURRENT 800  // Adjust the current as needed
 
 // Extruder1 (E1)
@@ -114,12 +121,6 @@
 //#define TEMP_1_PIN PF13
 //#define TEMP_2_PIN PF14
 
-// Fans
-#define FAN0_PIN PB1
-#define FAN1_PIN PB3
-#define FAN2_PIN PB4
-#define FAN3_PIN PE1
-
 #define Z_MIN_PROBE_PIN PA4
 
 #define BOARD_PREINIT() { \
@@ -143,14 +144,14 @@
   #define Z_SERIAL_TX_PIN                   PG11
   #define Z_SERIAL_RX_PIN        Z_SERIAL_TX_PIN
 
-  #define Z4_SERIAL_TX_PIN                   PD5
-  #define Z4_SERIAL_RX_PIN        Z4_SERIAL_TX_PIN
+  #define Z2_SERIAL_TX_PIN                   PD5
+  #define Z2_SERIAL_RX_PIN        Z2_SERIAL_TX_PIN
 
   #define Z3_SERIAL_TX_PIN                   PD9
   #define Z3_SERIAL_RX_PIN        Z3_SERIAL_TX_PIN
 
-  #define Z2_SERIAL_TX_PIN                   PB15
-  #define Z2_SERIAL_RX_PIN        Z2_SERIAL_TX_PIN
+  #define Z4_SERIAL_TX_PIN                   PB15
+  #define Z4_SERIAL_RX_PIN        Z4_SERIAL_TX_PIN
 
   #define E0_SERIAL_TX_PIN                  PF2
   #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
