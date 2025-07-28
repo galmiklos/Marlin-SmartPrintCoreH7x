@@ -111,6 +111,7 @@
 
 // Chamber
 #define TEMP_CHAMBER_PIN PF11
+#define HEATER_CHAMBER_PIN PA10
 
 // Heaters
 //#define HEATER_0_PIN PA10
