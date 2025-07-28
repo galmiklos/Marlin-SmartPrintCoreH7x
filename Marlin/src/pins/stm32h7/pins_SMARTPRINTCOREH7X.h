@@ -168,7 +168,7 @@
 #endif // HAS_TMC_UART
 
 // NeoPixel Config
-//#define NEOPIXEL_PIN PB9
+#define NEOPIXEL_PIN PB9
 
 // Led Effect
 //#define NEOPIXEL_PANEL_IDLE true
