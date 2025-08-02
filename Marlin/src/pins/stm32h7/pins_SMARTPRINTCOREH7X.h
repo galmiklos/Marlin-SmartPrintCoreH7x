@@ -168,7 +168,7 @@
 #endif // HAS_TMC_UART
 
 // NeoPixel Config
-#define NEOPIXEL_PIN PB9
+//#define NEOPIXEL_PIN PB9
 
 // Led Effect
 //#define NEOPIXEL_PANEL_IDLE true
@@ -383,7 +383,7 @@
     #define DOGLCD_A0              LCD_PINS_DC
     #define LCD_BACKLIGHT_PIN      -1
     #define LCD_RESET_PIN          LCD_P1_06_PIN
-    #define NEOPIXEL_PIN           LCD_P1_07_PIN
+    #define NEOPIXEL2_PIN           LCD_P1_07_PIN
     #define DOGLCD_MOSI            LCD_P2_08_PIN
     #define DOGLCD_SCK             LCD_P2_07_PIN
     #define FORCE_SOFT_SPI
