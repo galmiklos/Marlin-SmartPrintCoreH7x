@@ -184,6 +184,7 @@
 #if SD_CONNECTION_IS(ONBOARD)
   #define SD_DETECT_PIN                       PC13
   #define ONBOARD_SDIO
+  #define SD_SS_PIN -1
 #elif SD_CONNECTION_IS(LCD)
   #define SD_SCK_PIN             LCD_P2_07_PIN
   #define SD_MISO_PIN            LCD_P2_09_PIN
