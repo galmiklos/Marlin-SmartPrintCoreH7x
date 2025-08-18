@@ -40,6 +40,7 @@ pixel_index_t Marlin_NeoPixel::neoindex;
 Adafruit_NeoPixel Marlin_NeoPixel::adaneo1(NEOPIXEL_PIXELS, NEOPIXEL_PIN, NEOPIXEL_TYPE + NEO_KHZ800);
 #if CONJOINED_NEOPIXEL
   Adafruit_NeoPixel Marlin_NeoPixel::adaneo2(NEOPIXEL_PIXELS, NEOPIXEL2_PIN, NEOPIXEL2_TYPE + NEO_KHZ800);
+  Adafruit_NeoPixel Marlin_NeoPixel::adaneo3(NEOPIXEL_PIXELS, NEOPIXEL2_PIN, NEOPIXEL2_TYPE + NEO_KHZ800);
 #endif
 
 #ifdef NEOPIXEL_BKGD_INDEX_FIRST

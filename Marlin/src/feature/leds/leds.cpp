@@ -297,4 +297,46 @@ void LEDLights::set_color(const LEDColor &incol
 
 #endif  // NEOPIXEL2_SEPARATE
 
+#if ENABLED(NEOPIXEL3_SEPARATE)
+
+  #if ENABLED(NEO3_COLOR_PRESETS)
+    const LEDColor LEDLights3::defaultLEDColor = LEDColor(
+      NEO3_USER_PRESET_RED, NEO3_USER_PRESET_GREEN, NEO3_USER_PRESET_BLUE
+      OPTARG(HAS_WHITE_LED3, NEO3_USER_PRESET_WHITE)
+      OPTARG(NEOPIXEL_LED, NEO3_USER_PRESET_BRIGHTNESS)
+    );
+  #endif
+
+  #if ENABLED(LED_CONTROL_MENU)
+    LEDColor LEDLights3::color;
+    bool LEDLights3::lights_on;
+  #endif
+
+  LEDLights3 leds3;
+
+  void LEDLights3::setup() {
+    neo3.init();
+    TERN_(NEO3_USER_PRESET_STARTUP, set_default());
+  }
+
+  void LEDLights3::set_color(const LEDColor &incol) {
+    const uint32_t neocolor = LEDColorWhite() == incol
+                            ? neo3.Color(NEO2_WHITE)
+                            : neo3.Color(incol.r, incol.g, incol.b OPTARG(HAS_WHITE_LED3, incol.w));
+    neo3.set_brightness(incol.i);
+    neo3.set_color(neocolor);
+
+    #if ENABLED(LED_CONTROL_MENU)
+      // Don't update the color when OFF
+      lights_on = !incol.is_off();
+      if (lights_on) color = incol;
+    #endif
+  }
+
+  #if ENABLED(LED_CONTROL_MENU)
+    void LEDLights3::toggle() { if (lights_on) set_off(); else update(); }
+  #endif
+
+#endif  // NEOPIXEL3_SEPARATE
+
 #endif  // HAS_COLOR_LEDS

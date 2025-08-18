@@ -228,3 +228,50 @@ extern LEDLights leds;
   extern LEDLights2 leds2;
 
 #endif // NEOPIXEL2_SEPARATE
+
+#if ENABLED(NEOPIXEL3_SEPARATE)
+
+  class LEDLights3 {
+  public:
+    LEDLights3() {}
+
+    static void setup(); // init()
+
+    static void set_color(const LEDColor &color);
+
+    static void set_color(uint8_t r, uint8_t g, uint8_t b
+      OPTARG(HAS_WHITE_LED, uint8_t w=0)
+      OPTARG(NEOPIXEL_LED, uint8_t i=NEOPIXEL_BRIGHTNESS)
+    ) {
+      set_color(LEDColor(r, g, b
+        OPTARG(HAS_WHITE_LED, w)
+        OPTARG(NEOPIXEL_LED, i)
+      ));
+    }
+
+    static void set_off()   { set_color(LEDColorOff()); }
+    static void set_green() { set_color(LEDColorGreen()); }
+    static void set_white() { set_color(LEDColorWhite()); }
+
+    #if ENABLED(NEO3_COLOR_PRESETS)
+      static const LEDColor defaultLEDColor;
+      static void set_default()  { set_color(defaultLEDColor); }
+      static void set_red()      { set_color(LEDColorRed()); }
+      static void set_orange()   { set_color(LEDColorOrange()); }
+      static void set_yellow()   { set_color(LEDColorYellow()); }
+      static void set_blue()     { set_color(LEDColorBlue()); }
+      static void set_indigo()   { set_color(LEDColorIndigo()); }
+      static void set_violet()   { set_color(LEDColorViolet()); }
+    #endif
+
+    #if ENABLED(NEOPIXEL3_SEPARATE)
+      static LEDColor color; // last non-off color
+      static bool lights_on; // the last set color was "on"
+      static void toggle();  // swap "off" with color
+      static void update() { set_color(color); }
+    #endif
+  };
+
+  extern LEDLights3 leds3;
+
+#endif // NEOPIXEL2_SEPARATE

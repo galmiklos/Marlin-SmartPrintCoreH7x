@@ -77,6 +77,7 @@ private:
   static Adafruit_NeoPixel adaneo1;
   #if CONJOINED_NEOPIXEL
     static Adafruit_NeoPixel adaneo2;
+    static Adafruit_NeoPixel adaneo3;
   #endif
 
 public:
@@ -97,21 +98,25 @@ public:
   static void begin() {
     adaneo1.begin();
     TERN_(CONJOINED_NEOPIXEL, adaneo2.begin());
+    TERN_(CONJOINED_NEOPIXEL, adaneo3.begin());
   }
 
   static void set_pixel_color(const uint16_t n, const uint32_t c) {
     #if ENABLED(NEOPIXEL2_INSERIES)
       if (n >= NEOPIXEL_PIXELS) adaneo2.setPixelColor(n - (NEOPIXEL_PIXELS), c);
+      if (n >= NEOPIXEL_PIXELS) adaneo3.setPixelColor(n - (NEOPIXEL_PIXELS), c);
       else adaneo1.setPixelColor(n, c);
     #else
       adaneo1.setPixelColor(n, c);
       TERN_(MULTIPLE_NEOPIXEL_TYPES, adaneo2.setPixelColor(n, c));
+      TERN_(MULTIPLE_NEOPIXEL_TYPES, adaneo3.setPixelColor(n, c));
     #endif
   }
 
   static void set_brightness(const uint8_t b) {
     adaneo1.setBrightness(b);
     TERN_(CONJOINED_NEOPIXEL, adaneo2.setBrightness(b));
+    TERN_(CONJOINED_NEOPIXEL, adaneo3.setBrightness(b));
   }
 
   static void show() {
@@ -121,6 +126,7 @@ public:
     #if PIN_EXISTS(NEOPIXEL2)
       #if CONJOINED_NEOPIXEL
         adaneo2.show();
+        adaneo3.show();
       #else
         adaneo1.show();
         adaneo1.setPin(NEOPIXEL_PIN);
@@ -135,6 +141,7 @@ public:
   static uint32_t pixel_color(const uint16_t n) {
     #if ENABLED(NEOPIXEL2_INSERIES)
       if (n >= NEOPIXEL_PIXELS) return adaneo2.getPixelColor(n - (NEOPIXEL_PIXELS));
+      if (n >= NEOPIXEL_PIXELS) return adaneo3.getPixelColor(n - (NEOPIXEL_PIXELS));
     #endif
     return adaneo1.getPixelColor(n);
   }
