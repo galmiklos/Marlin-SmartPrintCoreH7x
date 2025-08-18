@@ -325,6 +325,8 @@ namespace LanguageNarrow_en {
   LSTR MSG_LED_CHANNEL_N                  = _UxGT("Channel {");
   LSTR MSG_NEO2_PRESETS                   = _UxGT("Light #2 Presets");
   LSTR MSG_NEO2_BRIGHTNESS                = _UxGT("Brightness");
+  LSTR MSG_NEO3_PRESETS                   = _UxGT("Light #3 Presets");
+  LSTR MSG_NEO3_BRIGHTNESS                = _UxGT("Brightness");
   LSTR MSG_CUSTOM_LEDS                    = _UxGT("Custom Lights");
   LSTR MSG_INTENSITY_R                    = _UxGT("Red Intensity");
   LSTR MSG_INTENSITY_G                    = _UxGT("Green Intensity");

@@ -1323,6 +1323,10 @@ void setup() {
     SETUP_RUN(leds2.setup());
   #endif
 
+  #if ENABLED(NEOPIXEL3_SEPARATE)
+    SETUP_RUN(leds3.setup());
+  #endif
+
   #if ENABLED(USE_CONTROLLER_FAN)     // Set up fan controller to initialize also the default configurations.
     SETUP_RUN(controllerFan.setup());
   #endif

@@ -3628,11 +3628,11 @@
                                           // See https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.h
   //#define NEOPIXEL_PIN                PE12 // LED driving pin
   #define NEOPIXEL2_TYPE  NEO_RGB
-  #define NEOPIXEL3_TYPE  NEO_RGB
-  //#define NEOPIXEL2_PIN               PB9
-  #define NEOPIXEL3_PIN              PA15
-  #define NEOPIXEL_PIN               PB9
-  #define NEOPIXEL_PIXELS              57 // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
+  #define NEOPIXEL3_TYPE  NEO_GRB
+  #define NEOPIXEL2_PIN              PE12
+  #define NEOPIXEL3_PIN              PB5
+  #define NEOPIXEL_PIN               PB9 // PA15
+  #define NEOPIXEL_PIXELS             57 // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
   #define NEOPIXEL_IS_SEQUENTIAL          // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
   #define NEOPIXEL_BRIGHTNESS         127 // Initial brightness (0-255)
   #define NEOPIXEL_STARTUP_TEST         // Cycle through colors at startup

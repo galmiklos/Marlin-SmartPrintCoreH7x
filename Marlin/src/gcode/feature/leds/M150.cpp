@@ -69,9 +69,10 @@ void GcodeSuite::M150() {
       #endif
       int8_t brightness = neo.brightness(), unit = parser.intval('S', NEOPIXEL_M150_DEFAULT);
       switch (unit) {
-        case -1: neo2.neoindex = index; // fall-thru
+        case -1: neo3.neoindex = index; // fall-thru
         case  0:  neo.neoindex = index; old_color = seenK ? neo.pixel_color(_MAX(index, 0)) : 0; break;
         case  1: neo2.neoindex = index; brightness = neo2.brightness(); old_color = seenK ? neo2.pixel_color(_MAX(index, 0)) : 0; break;
+        case  2: neo3.neoindex = index; brightness = neo3.brightness(); old_color = seenK ? neo3.pixel_color(_MAX(index, 0)) : 0; break;
       }
     #else
       const uint8_t brightness = neo.brightness();
@@ -92,12 +93,14 @@ void GcodeSuite::M150() {
     switch (unit) {
       case 0: leds.set_color(color); return;
       case 1: leds2.set_color(color); return;
+      case 2: leds3.set_color(color); return;
     }
   #endif
 
   // If 'S' is not specified use both
   leds.set_color(color);
   TERN_(NEOPIXEL2_SEPARATE, leds2.set_color(color));
+  TERN_(NEOPIXEL3_SEPARATE, leds3.set_color(color));
 }
 
 #endif // HAS_COLOR_LEDS

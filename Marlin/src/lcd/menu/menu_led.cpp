@@ -50,6 +50,7 @@
   #include "../../feature/leds/leds.h"
 
   #define MSG_LIGHT2_PRESETS TERN(BIQU_BX_TFT70, MSG_LIGHT_ENCODER_PRESETS, MSG_NEO2_PRESETS)
+  #define MSG_LIGHT3_PRESETS TERN(BIQU_BX_TFT70, MSG_LIGHT_ENCODER_PRESETS, MSG_NEO3_PRESETS)
 
   #if ENABLED(LED_COLOR_PRESETS)
 
@@ -93,6 +94,27 @@
 
   #endif // NEO2_COLOR_PRESETS
 
+  #if ENABLED(NEO3_COLOR_PRESETS)
+
+    void menu_leds3_presets() {
+      START_MENU();
+      #if LCD_HEIGHT > 2
+        STATIC_ITEM(MSG_LIGHT3_PRESETS, SS_DEFAULT|SS_INVERT);
+      #endif
+      BACK_ITEM(MSG_LED_CONTROL);
+      ACTION_ITEM(MSG_SET_LEDS_WHITE,  leds3.set_white);
+      ACTION_ITEM(MSG_SET_LEDS_RED,    leds3.set_red);
+      ACTION_ITEM(MSG_SET_LEDS_ORANGE, leds3.set_orange);
+      ACTION_ITEM(MSG_SET_LEDS_YELLOW, leds3.set_yellow);
+      ACTION_ITEM(MSG_SET_LEDS_GREEN,  leds3.set_green);
+      ACTION_ITEM(MSG_SET_LEDS_BLUE,   leds3.set_blue);
+      ACTION_ITEM(MSG_SET_LEDS_INDIGO, leds3.set_indigo);
+      ACTION_ITEM(MSG_SET_LEDS_VIOLET, leds3.set_violet);
+      END_MENU();
+    }
+
+  #endif // NEO3_COLOR_PRESETS
+
   void menu_led_custom() {
     START_MENU();
     BACK_ITEM(MSG_LED_CONTROL);
@@ -119,6 +141,17 @@
         EDIT_ITEM(uint8, MSG_INTENSITY_W, &leds2.color.w, 0, 255, leds2.update, true);
       #endif
       EDIT_ITEM(uint8, MSG_NEO2_BRIGHTNESS, &leds2.color.i, 0, 255, leds2.update, true);
+    #endif
+
+    #if ENABLED(NEOPIXEL3_SEPARATE)
+      STATIC_ITEM_N(3, MSG_LED_CHANNEL_N, SS_DEFAULT|SS_INVERT);
+      EDIT_ITEM(uint8, MSG_INTENSITY_R, &leds3.color.r, 0, 255, leds3.update, true);
+      EDIT_ITEM(uint8, MSG_INTENSITY_G, &leds3.color.g, 0, 255, leds3.update, true);
+      EDIT_ITEM(uint8, MSG_INTENSITY_B, &leds3.color.b, 0, 255, leds3.update, true);
+      #if HAS_WHITE_LED3
+        EDIT_ITEM(uint8, MSG_INTENSITY_W, &leds3.color.w, 0, 255, leds3.update, true);
+      #endif
+      EDIT_ITEM(uint8, MSG_NEO3_BRIGHTNESS, &leds3.color.i, 0, 255, leds3.update, true);
     #endif
 
     END_MENU();
@@ -156,6 +189,19 @@
       #if ENABLED(NEO2_COLOR_PRESETS)
         ACTION_ITEM(MSG_SET_LEDS_DEFAULT, leds2.set_default);
         SUBMENU(MSG_LIGHT2_PRESETS, menu_leds2_presets);
+      #endif
+    #endif
+
+    #if ENABLED(NEOPIXEL3_SEPARATE)
+      editable.state = leds3.lights_on;
+      #if ENABLED(BIQU_BX_TFT70)
+        EDIT_ITEM(bool, MSG_LIGHT_ENCODER, &editable.state, leds3.toggle);
+      #else
+        EDIT_ITEM_N(bool, 3, MSG_LIGHT_N, &editable.state, leds3.toggle);
+      #endif
+      #if ENABLED(NEO3_COLOR_PRESETS)
+        ACTION_ITEM(MSG_SET_LEDS_DEFAULT, leds3.set_default);
+        SUBMENU(MSG_LIGHT3_PRESETS, menu_leds3_presets);
       #endif
     #endif
 
