@@ -1724,8 +1724,8 @@
  *     But: 'M851 Z+1' with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
 #define Z_CLEARANCE_DEPLOY_PROBE   10 // (mm) Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES  5 // (mm) Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE     5 // (mm) Z Clearance between multiple probes
+#define Z_CLEARANCE_BETWEEN_PROBES 10 // (mm) Z Clearance between probe points
+#define Z_CLEARANCE_MULTI_PROBE    10 // (mm) Z Clearance between multiple probes
 #define Z_PROBE_ERROR_TOLERANCE     3 // (mm) Tolerance for early trigger (<= -probe.offset.z + ZPET)
 //#define Z_AFTER_PROBING           5 // (mm) Z position after probing is done
 
@@ -3628,7 +3628,9 @@
                                           // See https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.h
   //#define NEOPIXEL_PIN                PE12 // LED driving pin
   #define NEOPIXEL2_TYPE  NEO_RGB
+  #define NEOPIXEL3_TYPE  NEO_RGB
   //#define NEOPIXEL2_PIN               PB9
+  #define NEOPIXEL3_PIN              PA15
   #define NEOPIXEL_PIN               PB9
   #define NEOPIXEL_PIXELS              57 // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
   #define NEOPIXEL_IS_SEQUENTIAL          // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
@@ -3641,6 +3643,17 @@
     #define NEOPIXEL2_PIXELS            3 // Number of LEDs in the second strip
     #define NEOPIXEL2_BRIGHTNESS      127 // Initial brightness (0-255)
     #define NEOPIXEL2_STARTUP_TEST        // Cycle through colors at startup
+    #define NEOPIXEL_M150_DEFAULT      -1 // Default strip for M150 without 'S'. Use -1 to set all by default.
+  #else
+    //#define NEOPIXEL2_INSERIES          // Default behavior is NeoPixel 2 in parallel
+  #endif
+
+  // Support for third Adafruit NeoPixel LED driver controlled with M150 S1 ...
+  #define NEOPIXEL3_SEPARATE
+  #if ENABLED(NEOPIXEL3_SEPARATE)
+    #define NEOPIXEL3_PIXELS            3 // Number of LEDs in the second strip
+    #define NEOPIXEL3_BRIGHTNESS      127 // Initial brightness (0-255)
+    #define NEOPIXEL3_STARTUP_TEST        // Cycle through colors at startup
     #define NEOPIXEL_M150_DEFAULT      -1 // Default strip for M150 without 'S'. Use -1 to set all by default.
   #else
     //#define NEOPIXEL2_INSERIES          // Default behavior is NeoPixel 2 in parallel

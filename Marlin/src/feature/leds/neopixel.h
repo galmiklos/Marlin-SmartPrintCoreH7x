@@ -193,4 +193,49 @@ extern Marlin_NeoPixel neo;
 
 #endif // NEOPIXEL2_SEPARATE
 
+// Neo pixel channel 3
+#if ENABLED(NEOPIXEL3_SEPARATE)
+
+  #if _NEO_IS_RGB(NEOPIXEL3_TYPE)
+    #define NEOPIXEL3_IS_RGB 1
+    #define NEO3_WHITE 255, 255, 255
+  #else
+    #define NEOPIXEL3_IS_RGBW 1
+    #define HAS_WHITE_LED3 1      // A white component can be passed for NEOPIXEL2
+    #define NEO3_WHITE 0, 0, 0, 255
+  #endif
+
+  class Marlin_NeoPixel3 {
+  private:
+    static Adafruit_NeoPixel adaneo;
+
+  public:
+    static pixel_index_t neoindex;
+
+    static void init();
+    static void set_color_startup(const uint32_t c);
+
+    static void set_color(const uint32_t c);
+
+    static void begin() { adaneo.begin(); }
+    static void set_pixel_color(const uint16_t n, const uint32_t c) { adaneo.setPixelColor(n, c); }
+    static void set_brightness(const uint8_t b) { adaneo.setBrightness(b); }
+    static void show() {
+      adaneo.show();
+      adaneo.setPin(NEOPIXEL3_PIN);
+    }
+
+    // Accessors
+    static uint16_t pixels() { return adaneo.numPixels();}
+    static uint32_t pixel_color(const uint16_t n) { return adaneo.getPixelColor(n); }
+    static uint8_t brightness() { return adaneo.getBrightness(); }
+    static uint32_t Color(uint8_t r, uint8_t g, uint8_t b OPTARG(HAS_WHITE_LED3, uint8_t w)) {
+      return adaneo.Color(r, g, b OPTARG(HAS_WHITE_LED3, w));
+    }
+  };
+
+  extern Marlin_NeoPixel3 neo3;
+
+#endif // NEOPIXEL2_SEPARATE
+
 #undef _NEO_IS_RGB

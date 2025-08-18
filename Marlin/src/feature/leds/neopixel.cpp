@@ -173,4 +173,57 @@ void Marlin_NeoPixel::init() {
 
 #endif // NEOPIXEL2_SEPARATE
 
+#if ENABLED(NEOPIXEL3_SEPARATE)
+
+  Marlin_NeoPixel3 neo3;
+
+  pixel_index_t Marlin_NeoPixel3::neoindex;
+  Adafruit_NeoPixel Marlin_NeoPixel3::adaneo(NEOPIXEL3_PIXELS, NEOPIXEL3_PIN, NEOPIXEL3_TYPE);
+
+  void Marlin_NeoPixel3::set_color(const uint32_t color) {
+    if (neoindex >= 0) {
+      set_pixel_color(neoindex, color);
+      neoindex = -1;
+    }
+    else {
+      for (uint16_t i = 0; i < pixels(); ++i)
+        set_pixel_color(i, color);
+    }
+    show();
+  }
+
+  void Marlin_NeoPixel3::set_color_startup(const uint32_t color) {
+    for (uint16_t i = 0; i < pixels(); ++i)
+      set_pixel_color(i, color);
+    show();
+  }
+
+  void Marlin_NeoPixel3::init() {
+    neoindex = -1;                        // -1 .. NEOPIXEL3_PIXELS-1 range
+    set_brightness(NEOPIXEL3_BRIGHTNESS); //  0 .. 255 range
+    begin();
+    show();  // initialize to all off
+
+    #if ENABLED(NEOPIXEL3_STARTUP_TEST)
+      set_color_startup(adaneo.Color(255, 0, 0, 0));  // red
+      safe_delay(500);
+      set_color_startup(adaneo.Color(0, 255, 0, 0));  // green
+      safe_delay(500);
+      set_color_startup(adaneo.Color(0, 0, 255, 0));  // blue
+      safe_delay(500);
+      #if HAS_WHITE_LED3
+        set_color_startup(adaneo.Color(0, 0, 0, 255));  // white
+        safe_delay(500);
+      #endif
+    #endif
+
+    set_color(adaneo.Color
+      TERN(NEO3_USER_PRESET_STARTUP,
+        (NEO3_USER_PRESET_RED, NEO3_USER_PRESET_GREEN, NEO3_USER_PRESET_BLUE, NEO3_USER_PRESET_WHITE),
+        (0, 0, 0, 0))
+    );
+  }
+
+#endif // NEOPIXEL3_SEPARATE
+
 #endif // NEOPIXEL_LED
