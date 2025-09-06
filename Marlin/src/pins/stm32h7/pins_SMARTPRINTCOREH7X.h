@@ -191,7 +191,7 @@
   #define SD_MOSI_PIN            LCD_P2_08_PIN
   #define LCD_SDSS               LCD_P2_06_PIN
   #define SD_SS_PIN              LCD_P2_06_PIN
-  #define SD_DETECT_PIN          LCD_P2_03_PIN
+  //#define SD_DETECT_PIN          LCD_P2_03_PIN
 #endif
 
 //
@@ -332,6 +332,7 @@
     #define LCD_PINS_EN            LCD_P1_04_PIN
     #define LCD_PINS_RS            LCD_P1_05_PIN
     #define LCD_PINS_D4            LCD_P1_06_PIN
+    #define SD_DETECT_PIN          LCD_P2_03_PIN
 
     #define BTN_EN1                LCD_P2_05_PIN
     #define BTN_EN2                LCD_P2_04_PIN
@@ -354,6 +355,7 @@
     #define LCD_PINS_EN            LCD_P1_04_PIN
     #define LCD_PINS_RS            LCD_P1_05_PIN
     #define LCD_PINS_D4            LCD_P1_06_PIN
+    #define SD_DETECT_PIN          LCD_P2_03_PIN
 
     #define BTN_EN1                LCD_P2_05_PIN
     #define BTN_EN2                LCD_P2_04_PIN

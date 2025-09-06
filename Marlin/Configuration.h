@@ -1292,7 +1292,7 @@
  * Override with M92 (when enabled below)
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 830 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 800, 2800 }
 
 /**
  * Enable support for M92. Disable to save at least ~530 bytes of flash.
@@ -2133,8 +2133,8 @@
  */
 #define PREHEAT_BEFORE_LEVELING
 #if ENABLED(PREHEAT_BEFORE_LEVELING)
-  #define LEVELING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
-  #define LEVELING_BED_TEMP     50
+  #define LEVELING_NOZZLE_TEMP 160   // (°C) Only applies to E0 at this time
+  #define LEVELING_BED_TEMP    100
 #endif
 
 /**
